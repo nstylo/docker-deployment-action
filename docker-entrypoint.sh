@@ -59,7 +59,7 @@ fi
 
 DOCKER_COMP_COMMAND="docker compose"
 
-if [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v1" ]; then
+if [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VERSION" == "v1" ]; then
   DOCKER_COMP_COMMAND="docker-compose"
 fi
 
