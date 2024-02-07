@@ -57,6 +57,12 @@ else
   DEPLOYMENT_COMMAND_OPTIONS=" --log-level debug --host ssh://$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT"
 fi
 
+DOCKER_COMP_COMMAND="docker compose"
+
+if [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v1" ]; then
+  DOCKER_COMP_COMMAND="docker-compose"
+fi
+
 case $INPUT_DEPLOYMENT_MODE in
 
   docker-swarm)
@@ -65,7 +71,7 @@ case $INPUT_DEPLOYMENT_MODE in
 
   *)
     INPUT_DEPLOYMENT_MODE="docker-compose"
-    DEPLOYMENT_COMMAND="docker-compose $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
+    DEPLOYMENT_COMMAND="$DOCKER_COMP_COMMAND $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
   ;;
 esac
 
